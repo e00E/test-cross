@@ -1,0 +1,23 @@
+on: [push]
+
+jobs:
+  x86:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Run
+      run: cargo run
+
+  powerpc:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Install cross
+      run: cargo install cross
+
+    - name: Run
+      run: cross run --target powerpc-unknown-linux-gnu
